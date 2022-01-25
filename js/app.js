@@ -12,7 +12,7 @@ let imgTwo = document.getElementById('img-two');
 let imgThree = document.getElementById('img-three');
 
 const productArr = [];
-let maxPicks = 5; //< ******CHANGE TO 25********
+let maxPicks = 5; 
 let counter = 0;
 
 // ************ CONSTRUCTOR FUNCTION TO INSTANTIATE PRODUCTS
@@ -46,8 +46,6 @@ new Product('tauntaun');
 new Product('unicorn');
 new Product('water-can');
 new Product('wine-glass');
-
-console.log(productArr);
 // ******** EXECUTABLE CODE
 
 function getRandomIndex() {
@@ -67,15 +65,15 @@ function renderImages() {
 
   // grab the images and assign src attribute
   imgOne.src = productArr[productOneIndex].src;
-  imgOne.alt = productArr[productOneIndex].alt;
+  imgOne.id = productArr[productOneIndex].name;
   productArr[productOneIndex].views++
 
   imgTwo.src = productArr[productTwoIndex].src;
-  imgTwo.alt = productArr[productTwoIndex].alt;
+  imgTwo.id = productArr[productTwoIndex].name;
   productArr[productTwoIndex].views++
 
   imgThree.src = productArr[productThreeIndex].src;
-  imgThree.alt = productArr[productThreeIndex].alt;
+  imgThree.id = productArr[productThreeIndex].name;
   productArr[productThreeIndex].views++
 }
 
@@ -89,10 +87,13 @@ function handleClick(event) {
   //max clicks 25 - decriment... 5 for testing and decriment
   maxPicks--;
 
-  let imgClicked = event.target.alt;
+  let imgClicked = event.target.id;
+  
   for (let i = 0; i < productArr.length; i++) {
+    // console.log(productArr[i]);
     if (imgClicked === productArr[i].name) {
       productArr[i].picks++;
+      console.log(productArr[i]);
     }
   }
 
