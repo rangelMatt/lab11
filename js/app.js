@@ -11,8 +11,11 @@ let imgOne = document.getElementById('img-one');
 let imgTwo = document.getElementById('img-two');
 let imgThree = document.getElementById('img-three');
 
+// reference our canvas element for bar chart
+const ctx = document.getElementById('myChart').getContext('2d');
+
 const productArr = [];
-let maxPicks = 25; 
+let maxPicks = 15;
 let counter = 0;
 
 // ************ CONSTRUCTOR FUNCTION TO INSTANTIATE PRODUCTS
@@ -45,7 +48,7 @@ new Product('pen');
 new Product('pet-sweep');
 new Product('scissors');
 new Product('shark');
-new Product('sweep','png');
+new Product('sweep', 'png');
 new Product('tauntaun');
 new Product('unicorn');
 new Product('water-can');
@@ -60,16 +63,19 @@ function getRandomIndex() {
 let indexCollection = [];
 function renderImages() {
 
-  while(indexCollection.length < 3){
+  while (indexCollection.length < 6) {
     let randoNum = getRandomIndex();
-    while(!indexCollection.includes(randoNum)){
-    indexCollection.push(randoNum);
+    while (!indexCollection.includes(randoNum)) {
+      indexCollection.push(randoNum);
     }
   }
 
-  let productOneIndex = indexCollection.pop();
-  let productTwoIndex = indexCollection.pop();
-  let productThreeIndex = indexCollection.pop();
+  // array = queue
+  // first in first out
+
+  let productOneIndex = indexCollection.shift();
+  let productTwoIndex = indexCollection.shift();
+  let productThreeIndex = indexCollection.shift();
 
   // validation - to make sure images are unique per round
   // while (productOneIndex === productTwoIndex || productOneIndex === productThreeIndex || productOneIndex !== null) {
@@ -92,6 +98,52 @@ function renderImages() {
 
 renderImages();
 
+function renderChart (){
+  // chart label
+  let productNames = [];
+
+  // values for datasets
+  let productVotes = [];
+  let productViews = [];
+
+  // for loop to go through our product array to fill in our arrays declared above to use in our chart
+  for(let i = 0; i < productArr.length; i++){
+    productNames.push(productArr[i].name);
+    productVotes.push(productArr[i].picks);
+    productViews.push(productArr[i].views);
+  }
+
+  const chartObj = {
+    type: 'bar',
+    data: {
+      labels: productNames, // labels for the chart
+      datasets: [{
+        label: '# of Votes', // value for the dataset
+        data: productVotes,
+        backgroundColor: 'rgba(255, 0, 0, 0.5)',
+        borderColor: 'rgba(255, 99, 132, 1)',
+        borderWidth: 1
+      },
+      { //second dataset
+        label: '# of Views',
+        data: productViews,
+        backgroundColor: 'rgba(232, 212, 212 0.7)',
+        borderColor: 'grey',
+        borderWidth: 1
+      }
+    ]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  };
+  // Pull in our chart code: 2 args: Dom reference & object that will build out our chart
+  const myChart = new Chart(ctx, chartObj); // eslint-disable-line
+}
 // *********EVENTS
 
 //events - click images
@@ -101,7 +153,7 @@ function handleClick(event) {
   maxPicks--;
 
   let imgClicked = event.target.id;
-  
+
   for (let i = 0; i < productArr.length; i++) {
     // console.log(productArr[i]);
     if (imgClicked === productArr[i].name) {
@@ -112,25 +164,42 @@ function handleClick(event) {
 
   renderImages();
 
-  if(maxPicks === 0) {
+  
+
+  if (maxPicks === 0) {
     myContainer.removeEventListener('click', handleClick);
   }
 }
 
 function handleShowResults(event) {
+  if (maxPicks === 0) {
+    renderChart();
+  }
+
+ 
 
   let resultsList = document.getElementById('display-results');
-  if(maxPicks === 0){
-    for (let i = 0; i  < productArr.length; i++) {
+  if (maxPicks === 0) {
+    for (let i = 0; i < productArr.length; i++) {
       let li = document.createElement('li');
       li.textContent = `${productArr[i].name} had ${productArr[i].picks} votes, and was seen ${productArr[i].views} times.`;
       resultsList.appendChild(li);
     }
   }
 }
-// Step #1 - Event Listener
+
 
 myContainer.addEventListener('click', handleClick);
 
 // EVENT #2
-showResults.addEventListener('click',handleShowResults);
+showResults.addEventListener('click', handleShowResults);
+
+// *********** CHART
+
+// DOM Reference
+
+
+
+
+
+// constructor - 2 args: 1st is my reference to the DOM, 2nd is large objec
