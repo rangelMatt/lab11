@@ -7,7 +7,7 @@ h1 {
 }
 
 body {
-background-color: white;
+background-color: #E3B4B4;
 color: #663333;
 }
 
@@ -34,6 +34,10 @@ img {
   grid-row: 2/3;
 }
 
+main {
+  text-align: center;
+}
+
 #show-results {
 font-size: large;
 border-radius: 30px;
@@ -41,7 +45,8 @@ border: 2px solid #FF6666;
 margin: 20px;
 width: 250px;
 transition-duration: 0.4s;
-text-align: center;
+display:inline-block
+;
 }
 
 #show-results:hover {
