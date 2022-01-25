@@ -20,8 +20,8 @@ let counter = 0;
 function Product(name, fileExtension = 'jpg') {
   this.name = name;
   this.src = `img/${name}.${fileExtension}`;
-  this.views = null;
-  this.picks = 0
+  this.views = 0;
+  this.picks = 0;
   productArr.push(this);
 }
 
@@ -41,20 +41,19 @@ new Product('pen');
 new Product('pet-sweep');
 new Product('scissors');
 new Product('shark');
-new Product('sweep');
+new Product('sweep','png');
 new Product('tauntaun');
 new Product('unicorn');
 new Product('water-can');
 new Product('wine-glass');
 
-
+console.log(productArr);
 // ******** EXECUTABLE CODE
 
 function getRandomIndex() {
   return Math.floor(Math.random() * productArr.length);
 }
 
-let indexCollection = [];
 
 function renderImages() {
   let productOneIndex = getRandomIndex();
@@ -76,7 +75,7 @@ function renderImages() {
   productArr[productTwoIndex].views++
 
   imgThree.src = productArr[productThreeIndex].src;
-  imgTwo.alt = productArr[productThreeIndex].alt;
+  imgThree.alt = productArr[productThreeIndex].alt;
   productArr[productThreeIndex].views++
 }
 
@@ -105,16 +104,16 @@ function handleClick(event) {
 }
 
 function handleShowResults(event) {
+
   let resultsList = document.getElementById('display-results');
   if(maxPicks === 0){
     for (let i = 0; i  < productArr.length; i++) {
       let li = document.createElement('li');
       li.textContent = `${productArr[i].name} had ${productArr[i].picks} votes, and was seen ${productArr[i].views} times`;
-      resultsList.appendChild(li)
+      resultsList.appendChild(li);
     }
   }
 }
-
 // Step #1 - Event Listener
 
 myContainer.addEventListener('click', handleClick);
