@@ -12,17 +12,21 @@ let imgTwo = document.getElementById('img-two');
 let imgThree = document.getElementById('img-three');
 
 const productArr = [];
-let maxPicks = 5; 
+let maxPicks = 25; 
 let counter = 0;
 
 // ************ CONSTRUCTOR FUNCTION TO INSTANTIATE PRODUCTS
 
 function Product(name, fileExtension = 'jpg') {
+  //                    ^default parameter
+  // default parameters are going to be very helpful feature
   this.name = name;
   this.src = `img/${name}.${fileExtension}`;
   this.views = 0;
   this.picks = 0;
+  // properties with this attached
   productArr.push(this);
+  // this is connected to the objected that is predated.
 }
 
 // INSTANTIATE PRODUCTS
@@ -46,22 +50,31 @@ new Product('tauntaun');
 new Product('unicorn');
 new Product('water-can');
 new Product('wine-glass');
-// ******** EXECUTABLE CODE
 
+// ******** EXECUTABLE CODE
 function getRandomIndex() {
   return Math.floor(Math.random() * productArr.length);
 }
 
 
+let indexCollection = [];
 function renderImages() {
-  let productOneIndex = getRandomIndex();
-  let productTwoIndex = getRandomIndex();
-  let productThreeIndex = getRandomIndex();
+
+  while(indexCollection.length < 3){
+    let randoNum = getRandomIndex();
+    while(!indexCollection.includes(randoNum)){
+    indexCollection.push(randoNum);
+    }
+  }
+
+  let productOneIndex = indexCollection.pop();
+  let productTwoIndex = indexCollection.pop();
+  let productThreeIndex = indexCollection.pop();
 
   // validation - to make sure images are unique per round
-  while (productOneIndex === productTwoIndex && productOneIndex === productThreeIndex && productOneIndex !== null) {
-    productThreeIndex = getRandomIndex();
-  }
+  // while (productOneIndex === productTwoIndex || productOneIndex === productThreeIndex || productOneIndex !== null) {
+  //   productThreeIndex = getRandomIndex();
+  // }
 
   // grab the images and assign src attribute
   imgOne.src = productArr[productOneIndex].src;
@@ -110,7 +123,7 @@ function handleShowResults(event) {
   if(maxPicks === 0){
     for (let i = 0; i  < productArr.length; i++) {
       let li = document.createElement('li');
-      li.textContent = `${productArr[i].name} had ${productArr[i].picks} votes, and was seen ${productArr[i].views} times`;
+      li.textContent = `${productArr[i].name} had ${productArr[i].picks} votes, and was seen ${productArr[i].views} times.`;
       resultsList.appendChild(li);
     }
   }
