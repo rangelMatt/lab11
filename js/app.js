@@ -14,7 +14,7 @@ let imgThree = document.getElementById('img-three');
 // reference our canvas element for bar chart
 const ctx = document.getElementById('myChart').getContext('2d');
 
-const productArr = [];
+let productArr = [];
 let maxPicks = 15;
 let counter = 0;
 
@@ -32,8 +32,21 @@ function Product(name, fileExtension = 'jpg') {
   // this is connected to the objected that is predated.
 }
 
-// INSTANTIATE PRODUCTS
+// Step: Get goats out of local storage:
+let retrievedProd = localStorage.getItem('products');
 
+let parsedProd = JSON.parse(retrievedProd);
+
+// let parsedProd = JSON.parse(localStorage.getItem('products')) < a one liner from the above
+// console.log(parsedProd);
+
+// Step 4: If I have goats in LS, use those, if not then instantiate new goats. 
+
+if(retrievedProd) {
+  productArr = parsedProd;
+} else {
+
+// INSTANTIATE PRODUCTS
 new Product('bag');
 new Product('banana');
 new Product('bathroom');
@@ -53,6 +66,8 @@ new Product('tauntaun');
 new Product('unicorn');
 new Product('water-can');
 new Product('wine-glass');
+
+}
 
 // ******** EXECUTABLE CODE
 function getRandomIndex() {
@@ -176,6 +191,16 @@ function handleShowResults(event) {
     renderChart();
   }
 
+  // **** LOCAL STORAGE 
+
+  // Step 1: Stringify our data
+
+  let stringifiedProd = JSON.stringify(productArr);
+
+  console.log(stringifiedProd)
+
+  // Step 2: Set the item in local storage
+  localStorage.setItem('products', stringifiedProd);
  
 
   let resultsList = document.getElementById('display-results');
