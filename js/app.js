@@ -76,6 +76,7 @@ function getRandomIndex() {
 
 
 let indexCollection = [];
+
 function renderImages() {
 
   while (indexCollection.length < 6) {
