@@ -35,7 +35,6 @@ Created a bar chart that will appear after the voting has concluded. The bar cha
 
 > ## Reflections and Comments
 
-
 ## **Lab 11**
 
 =======
@@ -45,9 +44,10 @@ CSS is definitely something I am working on still, an ongoing battle. Also, how 
 this took me around 4.5 to 5 hours. I expected it to take around that.
 It's really the CSS that takes me a bit haha, so many options to choose how to build the website! Probably easier once you have the site in mind.
 
-
 ## **Lab 12**
 
 This went really well overall. Had to reference the demo code because the graph and votes didn't show up after 'clicking' to vote. Turned out I had mislabeled the current product array of views while pushing into the new productViews Array. And I had 'Obj' in 'chartObj' lowercased in the parameters of the DOM reference & object. I ALMOST was going down the whole of 'what function am I not calling back' or 'what am I missing in this function', and then I started checking brackets and spelling line by line, of what I recently added.
+
 This took me about 1.5 to 2 hours. I thought it would take me about that. Again, the CSS takes up the most, stylizing. I'm getting better at googling things for CSS though to get what I want the site to look like though.
+
 =======
