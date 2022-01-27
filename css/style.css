@@ -52,6 +52,8 @@ display:inline-block
 #show-results:hover {
   background-color: #663333;
   color: white;
+  box-shadow: inset 0 0 0 5px gray
+
 }
 
 #display-results {
