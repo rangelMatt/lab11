@@ -15,7 +15,7 @@ let imgThree = document.getElementById('img-three');
 const ctx = document.getElementById('myChart').getContext('2d');
 
 let productArr = [];
-let maxPicks = 15;
+let maxPicks = 25;
 let counter = 0;
 
 // ************ CONSTRUCTOR FUNCTION TO INSTANTIATE PRODUCTS
