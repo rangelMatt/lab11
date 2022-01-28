@@ -15,7 +15,7 @@ let imgThree = document.getElementById('img-three');
 const ctx = document.getElementById('myChart').getContext('2d');
 
 let productArr = [];
-let maxPicks = 15;
+let maxPicks = 25;
 let counter = 0;
 
 // ************ CONSTRUCTOR FUNCTION TO INSTANTIATE PRODUCTS
@@ -32,7 +32,7 @@ function Product(name, fileExtension = 'jpg') {
   // this is connected to the objected that is predated.
 }
 
-// Step: Get goats out of local storage:
+// Step 1: Get goats out of local storage:
 let retrievedProd = localStorage.getItem('products');
 
 let parsedProd = JSON.parse(retrievedProd);
@@ -42,30 +42,30 @@ let parsedProd = JSON.parse(retrievedProd);
 
 // Step 4: If I have goats in LS, use those, if not then instantiate new goats. 
 
-if(retrievedProd) {
+if (retrievedProd) {
   productArr = parsedProd;
 } else {
 
-// INSTANTIATE PRODUCTS
-new Product('bag');
-new Product('banana');
-new Product('bathroom');
-new Product('boots');
-new Product('breakfast');
-new Product('bubblegum');
-new Product('chair');
-new Product('cthulhu');
-new Product('dog-duck');
-new Product('dragon');
-new Product('pen');
-new Product('pet-sweep');
-new Product('scissors');
-new Product('shark');
-new Product('sweep', 'png');
-new Product('tauntaun');
-new Product('unicorn');
-new Product('water-can');
-new Product('wine-glass');
+  // INSTANTIATE PRODUCTS
+  new Product('bag');
+  new Product('banana');
+  new Product('bathroom');
+  new Product('boots');
+  new Product('breakfast');
+  new Product('bubblegum');
+  new Product('chair');
+  new Product('cthulhu');
+  new Product('dog-duck');
+  new Product('dragon');
+  new Product('pen');
+  new Product('pet-sweep');
+  new Product('scissors');
+  new Product('shark');
+  new Product('sweep', 'png');
+  new Product('tauntaun');
+  new Product('unicorn');
+  new Product('water-can');
+  new Product('wine-glass');
 
 }
 
@@ -73,7 +73,6 @@ new Product('wine-glass');
 function getRandomIndex() {
   return Math.floor(Math.random() * productArr.length);
 }
-
 
 let indexCollection = [];
 
@@ -114,7 +113,7 @@ function renderImages() {
 
 renderImages();
 
-function renderChart (){
+function renderChart() {
   // chart label
   let productNames = [];
 
@@ -123,7 +122,7 @@ function renderChart (){
   let productViews = [];
 
   // for loop to go through our product array to fill in our arrays declared above to use in our chart
-  for(let i = 0; i < productArr.length; i++){
+  for (let i = 0; i < productArr.length; i++) {
     productNames.push(productArr[i].name);
     productVotes.push(productArr[i].picks);
     productViews.push(productArr[i].views);
@@ -147,7 +146,7 @@ function renderChart (){
         borderColor: 'grey',
         borderWidth: 1
       }
-    ]
+      ]
     },
     options: {
       scales: {
@@ -180,7 +179,7 @@ function handleClick(event) {
 
   renderImages();
 
-  
+
 
   if (maxPicks === 0) {
     myContainer.removeEventListener('click', handleClick);
@@ -202,7 +201,7 @@ function handleShowResults(event) {
 
   // Step 2: Set the item in local storage
   localStorage.setItem('products', stringifiedProd);
- 
+
 
   let resultsList = document.getElementById('display-results');
   if (maxPicks === 0) {
