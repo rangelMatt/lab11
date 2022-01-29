@@ -24,6 +24,12 @@ Created a bar chart that will appear after the voting has concluded. The bar cha
 
 ------------
 
+## Lab 15b
+
+Deploying site and submit for final submission. I ran through the site one more time to ensure no bugs or gitchas.
+
+------------
+
 =======
 
 ## Author: Matt Rangel
@@ -49,5 +55,11 @@ It's really the CSS that takes me a bit haha, so many options to choose how to b
 This went really well overall. Had to reference the demo code because the graph and votes didn't show up after 'clicking' to vote. Turned out I had mislabeled the current product array of views while pushing into the new productViews Array. And I had 'Obj' in 'chartObj' lowercased in the parameters of the DOM reference & object. I ALMOST was going down the whole of 'what function am I not calling back' or 'what am I missing in this function', and then I started checking brackets and spelling line by line, of what I recently added.
 
 This took me about 1.5 to 2 hours. I thought it would take me about that. Again, the CSS takes up the most, stylizing. I'm getting better at googling things for CSS though to get what I want the site to look like though.
+
+## **Lab15b**
+
+This was an excellent lab that tested and added some variety to my skillset. I love graphs and I really enjoyed going through and tweaking the graph to see what else could be done.
+
+For final submission, this took me less than 15 minutes. About what I expected.
 
 =======
